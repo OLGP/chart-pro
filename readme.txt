@@ -71,4 +71,4 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 ## 📧 Contacto
 
-[Oscar Garateguy-OLGP] - [oscargarateguy@hotmail.com]
+[Oscar Garateguy-OLGP] - [oscargarateguy@hotmail.com-------https://github.com/OLGP/chart-pro]
