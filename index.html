@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gráfico de OLG</title>
+  <link rel="stylesheet" href="src/style/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+
+  <!-- 🔘 Botones fijos -->
+  <button id="toggle-indicator-panel">📊 Indicadores</button>
+  <button id="btn-autoscroll">🔄 Seguir velas</button>
+
+  <!-- 📋 Panel lateral izquierdo -->
+  <div id="indicator-selector">    
+    <label for="interval-selector">🕒 Intervalo de velas:</label>
+    <select id="interval-selector">
+      <option value="1m">1 minuto</option>
+      <option value="5m">5 minutos</option>
+      <option value="15m">15 minutos</option>
+      <option value="1h">1 hora</option>
+      <option value="4h">4 horas</option>
+      <option value="1d">1 día</option>
+      <option value="1w">1 semana</option>
+      <option value="1M">1 mes</option>
+    </select>
+
+    <label for="activo">💱 Activo:</label>
+    <select id="activo">
+      <option value="btcusdt">BTC/USDT</option>
+      <option value="ethusdt">ETH/USDT</option>
+      <option value="bnbusdt">BNB/USDT</option>
+      <option value="adausdt">ADA/USDT</option>
+      <option value="xrpusdt">XRP/USDT</option>
+    </select>
+
+    <h3>📊 Indicadores</h3>
+
+    <!-- Estocástico -->
+    <label>
+      <input type="checkbox" id="toggle-stoch" checked />
+      Estocástico
+    </label>
+    <button id="btn-config-stoch">⚙️ Configurar</button>
+    <div id="stoch-panel">
+      <label>%K: <input type="number" id="input-k" value="14" min="1"></label><br>
+      <label>%D: <input type="number" id="input-d" value="3" min="1"></label><br>
+      <button id="btn-apply-stoch">Aplicar</button>
+    </div>
+
+    <!-- RSI -->
+    <label>
+      <input type="checkbox" id="toggle-rsi" checked />
+      RSI
+    </label>
+    <button id="btn-config-rsi">⚙️ Configurar</button>
+    <div id="rsi-panel">
+      <label>Periodo RSI:
+        <input type="number" id="input-rsi-period" value="14" min="1" />
+      </label>
+      <button id="btn-apply-rsi">Aplicar</button>
+    </div>
+
+    <!-- Bandas de Bollinger -->
+<label>
+  <input type="checkbox" id="toggle-bb" checked />
+  Bandas de Bollinger
+</label>
+<button id="btn-config-bb">⚙️ Configurar</button>
+<div id="bb-panel">
+  <label>Período:
+    <input type="number" id="bb-periodo" value="20" min="1" />
+  </label><br>
+  <label>Desviación:
+    <input type="number" id="bb-desviacion" value="2" step="0.1" />
+  </label><br>
+  <button id="btn-apply-bb">Aplicar</button>
+</div>
+<!-- Parabólico SAR -->
+<label>
+  <input type="checkbox" id="toggle-sar" checked />
+  Parabólico SAR
+</label>
+<button id="btn-config-sar">⚙️ Configurar</button>
+<div id="sar-panel">
+  <label>Min AF:
+    <input type="number" id="sar-min-af" value="0.02" step="0.01" min="0.001" />   </label><br>
+  <label>Step:
+    <input type="number" id="sar-step" value="0.02" step="0.01" min="0.001" />
+  </label><br>
+  <label>Max:
+    <input type="number" id="sar-max" value="0.2" step="0.01" min="0.01" />
+  </label><br>
+  <button id="btn-apply-sar">Aplicar</button>
+</div>
+
+<!-- Fractales -->
+<label>
+  <input type="checkbox" id="toggle-fractals" checked />
+  Fractales
+</label>
+<button id="btn-config-fractals">⚙️ Configurar</button>
+<div id="fractals-panel">
+  <label>Lookback:
+    <input type="number" id="fractal-lookback" value="2" min="1" />
+  </label><br>
+  <button id="btn-apply-fractals">Aplicar</button>
+</div>
+
+
+  </div>
+
+  <!-- 📈 Área de gráficos -->
+  <div class="chart-area">
+    <!-- Gráfico principal -->
+    <div id="main-chart-container" class="sub-chart">
+      <div id="main-chart"></div>
+      <svg id="overlay" class="overlay"></svg>
+    </div>
+
+    <!-- Subchart Estocástico -->
+    <div id="stochastic-chart-container" class="sub-chart">
+      <div id="stochastic-chart"></div>
+    </div>
+
+    <!-- Subchart RSI -->
+    <div id="rsi-chart-container" class="sub-chart">
+      <div id="rsi-chart"></div>
+    </div>
+  </div>
+
+  <!-- 📜 Script principal -->
+  <script src="src/grafico.js"></script>
+</body>
+</html>
